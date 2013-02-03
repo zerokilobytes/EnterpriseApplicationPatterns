@@ -5,7 +5,7 @@ package org.eap;
  * 
  *
  */
-public class Patterns
+public class TestPatterns
 {
 	public static void main(String[] args)
 	{

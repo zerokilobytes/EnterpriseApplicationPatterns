@@ -1,7 +1,10 @@
-import org.eap.Patterns;
+package org.eap.patterns.domainlogic;
 
-package org.eap.Patterns.DomainLogic;
 
 class TransactionScript
 {
+	public TransactionScript()
+	{
+		
+	}
 }
