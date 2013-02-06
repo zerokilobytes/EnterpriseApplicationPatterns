@@ -1,9 +1,6 @@
 package org.eap.dao.datasource;
 
-<<<<<<< HEAD
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Contract;
-import org.eap.dao.businessobject.RecognitionStatement;
 
 
 
@@ -29,9 +26,4 @@ public class Mock
 	{
 		return null;
 	}
-		
-=======
-class Mock
-{
->>>>>>> 671fe32d1f7eeddc35ebe687f6c9dde860aaa69a
 }
