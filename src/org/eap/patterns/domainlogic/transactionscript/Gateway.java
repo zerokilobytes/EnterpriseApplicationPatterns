@@ -7,7 +7,7 @@ import org.eap.dao.businessobject.*;
 
 public interface Gateway 
 {
-	Result<RecognitionStatement> FindRecognitionsFor(int contractId, Date asOfDate);
+	Result<RevenueRecognition> FindRecognitionsFor(int contractId, Date asOfDate);
 	   
 	Result<Contract> FindContract(int contractId);
 	   
