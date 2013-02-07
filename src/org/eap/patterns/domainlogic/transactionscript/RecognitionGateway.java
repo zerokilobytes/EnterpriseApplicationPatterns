@@ -4,19 +4,18 @@ import java.util.Date;
 
 
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Contract;
+import org.eap.dao.businessobject.ContractStatement;
 import org.eap.dao.businessobject.RevenueRecognition;
-import org.eap.dao.datasource.Mock;
 
 public class RecognitionGateway implements Gateway
 {
 	@Override
 	public Result<RevenueRecognition> FindRecognitionsFor(int contractId, Date asOfDate) {
-		return Mock.loadRecognitionStatement(contractId, asOfDate);
+		return org.eap.dao.datasource.mock.RevenueRecognition.loadRecognitionStatement(contractId, asOfDate);
 	}
 
 	@Override
-	public Result<Contract> FindContract(int contractId) {
+	public Result<ContractStatement> FindContract(int contractId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

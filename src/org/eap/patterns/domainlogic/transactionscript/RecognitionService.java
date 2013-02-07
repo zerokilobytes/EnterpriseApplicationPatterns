@@ -1,9 +1,9 @@
 package org.eap.patterns.domainlogic.transactionscript;
 
-import java.sql.Date;
+import java.util.Date;
 
 public interface RecognitionService 
 {
-	double GetRecognizedRevenue(int contractId, Date asOfDate);
-	void CalculateRevenueRecognitions(int contractId);
+	double GetRecognizedRevenue(int contractId, Date asOfDate) throws Exception;
+	void CalculateRevenueRecognitions(int contractId) throws Exception;
 }

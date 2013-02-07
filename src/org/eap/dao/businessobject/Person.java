@@ -1,5 +1,5 @@
 package org.eap.dao.businessobject;
 
-class Person
+public class Person
 {
 }

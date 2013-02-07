@@ -8,6 +8,4 @@ public class RevenueRecognition
 	public int ContractId;
 	public double Amount;
 	public Date RecognizedOn;
-
-	
 }

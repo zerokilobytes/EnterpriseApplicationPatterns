@@ -9,7 +9,7 @@ public interface Gateway
 {
 	Result<RevenueRecognition> FindRecognitionsFor(int contractId, Date asOfDate);
 	   
-	Result<Contract> FindContract(int contractId);
+	Result<ContractStatement> FindContract(int contractId);
 	   
 	void InsertRecognition(int contractId, double amount, Date asOfDate);
 }
