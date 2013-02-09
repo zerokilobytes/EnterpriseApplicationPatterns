@@ -1,18 +1,16 @@
 package org.eap.dao.datasource;
 
-import java.util.Date;
 
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Contract;
-import org.eap.dao.businessobject.RevenueRecognition;
+import org.eap.dao.businessobject.Product;
 
 
 
 public class Mock
 {
-	public static Result<RevenueRecognition> loadRecognitionStatement(int contractId, Date asOfDate)
+	public static Result<Product> loadProductsInStock()
 	{
-		Result<RevenueRecognition> result = new Result<RevenueRecognition>();
+		Result<Product> result = new Result<Product>();
 		
 		/*result.add(new RevenueRecognition(1, "Statement 1"));
 		result.add(new RevenueRecognition(2, "Statement 2"));
@@ -26,7 +24,7 @@ public class Mock
 		
 		return result;
 	}
-	public static Result<Contract> loadContract()
+	public static Result<Product> loadContract()
 	{
 		return null;
 	}

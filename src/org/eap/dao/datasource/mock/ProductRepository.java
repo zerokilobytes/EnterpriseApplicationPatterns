@@ -3,22 +3,18 @@
  */
 package org.eap.dao.datasource.mock;
 
-import java.util.Date;
-
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Contract;
-
-
+import org.eap.dao.businessobject.Product;
 
 /**
  * @author SNOW
  *
  */
-public class RevenueRecognition implements org.eap.dao.repository.RevenueRecognition
+public class ProductRepository implements org.eap.dao.repository.ProductRepository
 {
-	public static Result<org.eap.dao.businessobject.RevenueRecognition> loadRecognitionStatement(int contractId, Date asOfDate)
+	public Result<org.eap.dao.businessobject.Product> loadProductsInStock()
 	{
-		Result<org.eap.dao.businessobject.RevenueRecognition> result = new Result<org.eap.dao.businessobject.RevenueRecognition>();
+		Result<Product> result = new Result<Product>();
 		
 		/*result.add(new RevenueRecognition(1, "Statement 1"));
 		result.add(new RevenueRecognition(2, "Statement 2"));
@@ -31,9 +27,5 @@ public class RevenueRecognition implements org.eap.dao.repository.RevenueRecogni
 		result.add(new RevenueRecognition(9, "Statement 9"));*/
 		
 		return result;
-	}
-	public static Result<Contract> loadContract()
-	{
-		return null;
 	}
 }

@@ -2,7 +2,10 @@ package org.eap.dao.businessobject;
 
 public class Product 
 {
-	public int ProductId;
+	public int ProductID;
+	public int SupplierID;
+	public long Price;
 	public String ProductName;
-	public String ProductType;
+	public String ProductDescription;
+	public Boolean InStock;
 }
