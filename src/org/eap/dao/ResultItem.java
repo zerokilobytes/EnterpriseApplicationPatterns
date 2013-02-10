@@ -5,5 +5,5 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class ResultItem<T> extends  ArrayList<T>
 {
-	
+
 }

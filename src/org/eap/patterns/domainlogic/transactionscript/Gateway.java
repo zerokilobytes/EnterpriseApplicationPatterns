@@ -5,5 +5,5 @@ import org.eap.dao.businessobject.*;
 
 public interface Gateway 
 {
-	Result<Product> loadProductsInStock();
+	Result<Product> GetProductsBySupplier(int supplierID);
 }

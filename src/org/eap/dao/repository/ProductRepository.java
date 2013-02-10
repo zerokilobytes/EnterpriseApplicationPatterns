@@ -6,5 +6,5 @@ import org.eap.dao.businessobject.Product;
 
 public interface ProductRepository
 {
-	public Result<Product> loadProductsInStock();
+	public Result<Product> GetProductsBySupplier(int supplierID);
 }

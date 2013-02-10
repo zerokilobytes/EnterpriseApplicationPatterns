@@ -1,6 +1,5 @@
 package org.eap.dao.datasource;
 
-
 import org.eap.dao.Result;
 import org.eap.dao.businessobject.Product;
 
@@ -8,24 +7,27 @@ import org.eap.dao.businessobject.Product;
 
 public class Mock
 {
-	public static Result<Product> loadProductsInStock()
+	public static Result<Product> getProducts()
 	{
 		Result<Product> result = new Result<Product>();
-		
-		/*result.add(new RevenueRecognition(1, "Statement 1"));
-		result.add(new RevenueRecognition(2, "Statement 2"));
-		result.add(new RevenueRecognition(3, "Statement 3"));
-		result.add(new RevenueRecognition(4, "Statement 4"));
-		result.add(new RevenueRecognition(5, "Statement 5"));
-		result.add(new RevenueRecognition(6, "Statement 6"));
-		result.add(new RevenueRecognition(7, "Statement 7"));
-		result.add(new RevenueRecognition(8, "Statement 8"));
-		result.add(new RevenueRecognition(9, "Statement 9"));*/
-		
+		result.Items.add(initProduct(10003, 1, 950.00, "Electric Stove", "Silver Electric Stove", true));
+		result.Items.add(initProduct(10004, 1, 4000.00, "Toster", "Black Electric Toster", false));
+		result.Items.add(initProduct(10005, 2, 200.00, "Speaker", "Large Speakers", true));
+		result.Items.add(initProduct(10006, 2, 150.00, "Washig Machine", "4X Washig Machine", false));
+		result.Items.add(initProduct(10007, 3, 150.00, "Dish Washer", "Small Dish Washer", true));
+
 		return result;
 	}
-	public static Result<Product> loadContract()
+	
+	public static Product initProduct( int productID, int supplierID, double price, String productName, String productDescription, Boolean inStock)
 	{
-		return null;
+		Product product 			= new Product();
+		product.ProductID 			= productID;
+		product.SupplierID 			= supplierID;
+		product.Price 				= price;
+		product.ProductName 		= productName;
+		product.ProductDescription 	= productDescription;
+		product.InStock 			= inStock;
+		return product;
 	}
 }

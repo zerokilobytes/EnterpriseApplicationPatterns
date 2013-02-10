@@ -10,9 +10,9 @@ public class ProductGateway implements Gateway
 {
 
 	@Override
-	public Result<Product> loadProductsInStock() 
+	public Result<Product> GetProductsBySupplier(int supplierID)
 	{
 		ProductRepository product = new ProductRepository();
-		return product.loadProductsInStock();
+		return product.GetProductsBySupplier(supplierID);
 	}
 }
