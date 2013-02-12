@@ -25,9 +25,9 @@ public class ProductInventoryService implements ProductService
             Result<Product> result = null;
 
             // Find RevenueRecognition based on coontract ID and date
-    		result = gateway.GetProductsBySupplier(supplierID);
+    		result = gateway.getProductsBySupplier(supplierID);
 
-    		// Compute the total of revenue amount
+    		// Compute the total amount
     	    Iterator<Product> iter = result.Items.iterator();
     	    while(iter.hasNext())
     	    {
