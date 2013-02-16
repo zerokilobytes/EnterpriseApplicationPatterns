@@ -19,8 +19,8 @@ public class ProductRepository implements org.eap.dao.repository.ProductReposito
 		return result;
 	}
 
-	public Result<org.eap.dao.businessobject.Product> GetProductsByID(int productID) {
-		Result<Product> result = Mock.getProductBiID(productID);	
+	public Result<org.eap.dao.businessobject.Product> getProductsByID(int productID) {
+		Result<Product> result = Mock.getProductByID(productID);	
 		return result;
 	}
 }

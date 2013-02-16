@@ -3,7 +3,8 @@ package org.eap.patterns.domainlogic.domainmodel;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.eap.dao.Result;
+import org.eap.dao.datasource.mock.OrderRepository;
 
 public class Customer extends org.eap.dao.businessobject.Customer
 {
@@ -12,7 +13,8 @@ public class Customer extends org.eap.dao.businessobject.Customer
 	public Customer(int customerID)
 	{
 		Orders = new ArrayList<Order>();
-		this.load();
+		this.CustomerID = customerID;
+		this.loadOrders();
 	}
 
 	/**
@@ -25,13 +27,20 @@ public class Customer extends org.eap.dao.businessobject.Customer
 
 		for(Order order : Orders)
 		{
-			total += order.Product.Price * order.Quanty;
+			total += (order.Product.Price * order.Quanty) - order.Discount;
 		}
 		return total;
 	}
 	
-	private void load()
+	private void loadOrders()
 	{
-
+		OrderRepository orderRepo = new OrderRepository();
+		Result<org.eap.dao.businessobject.Order> result = orderRepo.getOrdersByCustomer(this.CustomerID);
+		
+		for(org.eap.dao.businessobject.Order item :  result.Items)
+		{
+			Order order = new Order(item.OrderID);
+			Orders.add(order);
+		}
 	}
 }

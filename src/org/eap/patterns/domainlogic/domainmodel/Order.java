@@ -1,6 +1,7 @@
 package org.eap.patterns.domainlogic.domainmodel;
 
 import org.eap.dao.Result;
+import org.eap.dao.datasource.mock.OrderRepository;
 import org.eap.dao.datasource.mock.ProductRepository;
 import org.eap.dao.businessobject.Product;
 
@@ -16,9 +17,18 @@ public class Order extends org.eap.dao.businessobject.Order
 	
 	private void load()
 	{
+		OrderRepository ordeRepo = new OrderRepository();
+		Result<org.eap.dao.businessobject.Order> orderResult = ordeRepo.getOrderByOrderID(this.OrderID);
+		org.eap.dao.businessobject.Order order = orderResult.Items.get(0);
+		
 		ProductRepository product = new ProductRepository();
-		Result<Product> result = product.GetProductsByID(1);
-
-		this.Product = result.Items.get(0);
+		Result<Product> result = product.getProductsByID(order.ProductID);
+		
+		this.Product 		= result.Items.get(0);
+		this.Quanty 		= order.Quanty;
+		this.Discount 		= order.Discount;
+		this.OrderDate 		= order.OrderDate;
+		this.ShippingDate 	= order.ShippingDate;
+		this.Delivered 		= order.Delivered;
 	}
 }

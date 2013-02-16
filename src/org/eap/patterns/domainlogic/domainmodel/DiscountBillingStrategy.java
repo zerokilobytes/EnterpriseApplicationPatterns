@@ -7,7 +7,7 @@ public class DiscountBillingStrategy
 	 * @param customerID
 	 * @return
 	 */
-	public double getCost(int customerID)  
+	public double getCustomerOrdersCost(int customerID)  
     {  
 		Customer customer = new Customer(customerID);
 		return customer.getTotalCostOfOrders();
