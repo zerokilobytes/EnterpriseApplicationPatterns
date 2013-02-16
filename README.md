@@ -13,4 +13,4 @@ Enterprise Application Patterns
         • Implements business rules on domain entities
         • Model business concepts into entities with behaviors
         
-2 Transaction Script
+    1.2 Transaction Script
