@@ -2,6 +2,9 @@ Enterprise Application Patterns
 =============================
 
 1 Domain Logic Patterns
+    
+    Overview
+    Group of patterns that are concerned with the complexity of business domain logics
 
     1.1 Domain Model
         A domain model represents an object in the context of the business domain. It organizes business logic into
