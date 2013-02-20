@@ -14,3 +14,6 @@ Enterprise Application Patterns
         • Model business concepts into entities (Classes) with behaviors (Methods)
         
     1.2 Transaction Script
+        Organizes business logic by routines where each routine handles a single request from the presentation layer
+        • Make calls directly to the database
+        • Each individual transaction will have its own Transaction Script routine or list of sub routine
