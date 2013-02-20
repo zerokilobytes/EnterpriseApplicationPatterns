@@ -11,6 +11,6 @@ Enterprise Application Patterns
         • Gives a conceptual framework of the things in the problem space
         • Focuses on semantics
         • Implements business rules on domain entities
-        • Model business concepts into entities with behaviors
+        • Model business concepts into entities (Classes) with behaviors (Methods)
         
     1.2 Transaction Script
