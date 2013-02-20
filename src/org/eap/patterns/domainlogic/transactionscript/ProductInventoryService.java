@@ -6,6 +6,10 @@ import java.util.Iterator;
 import org.eap.dao.Result;
 import org.eap.dao.businessobject.Product;
 
+/**
+ * ProductInventoryService class
+ * @author Markel Mairs
+ */
 public class ProductInventoryService implements ProductService
 {
 	/**
@@ -24,7 +28,7 @@ public class ProductInventoryService implements ProductService
             Gateway gateway = new ProductGateway();
             Result<Product> result = null;
 
-            // Find RevenueRecognition based on coontract ID and date
+            // Find get products by supplier
     		result = gateway.getProductsBySupplier(supplierID);
 
     		// Compute the total amount

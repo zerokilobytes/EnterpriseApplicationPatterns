@@ -1,5 +1,9 @@
 package org.eap.patterns.domainlogic.domainmodel;
 
+/**
+ * DiscountBillingStrategy class
+ * @author Markel Mairs
+ */
 public class DiscountBillingStrategy 
 {
 	/**

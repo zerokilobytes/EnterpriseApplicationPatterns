@@ -4,8 +4,8 @@
 package org.eap.dao.repository;
 
 /**
- * @author SNOW
- *
+ * Repository class
+ * @author Markel Mairs
  */
 public class Repository<T> {
 
