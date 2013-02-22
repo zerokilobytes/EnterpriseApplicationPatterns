@@ -20,6 +20,7 @@ Enterprise Application Patterns
         • Make calls directly to the database or through a thin database wrapper
         • Each individual transaction will have its own Transaction Script routine or list of sub routine
 
-    1.3 Organizes business logic around database tables or view with one class per database object. Each class 
+    1.3 Table Module
+        Organizes business logic around database tables or view with one class per database object. Each class 
         encapsulates all the domain logic for all records stored in a table or view
         • It presents a database-centric approach
