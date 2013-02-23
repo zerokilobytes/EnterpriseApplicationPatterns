@@ -23,4 +23,5 @@ Enterprise Application Patterns
     1.3 Table Module
         Organizes business logic around database tables or view with one class per database object. Each class 
         encapsulates all the domain logic for all records stored in a table or view
-        • It presents a database-centric approach
+        • Table oriented
+        • Has weak support for polymorphism
