@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eap.dao.Result;
-import org.eap.dao.datasource.mock.OrderRepository;
+import org.eap.dao.datasource.mock.OrderItemRepository;
 
 /**
  * Customer class
@@ -12,11 +12,11 @@ import org.eap.dao.datasource.mock.OrderRepository;
  */
 public class Customer extends org.eap.dao.businessobject.Customer
 {
-	public List<Order> Orders;
+	public List<OrderItem> Orders;
 
 	public Customer(int customerID)
 	{
-		Orders = new ArrayList<Order>();
+		Orders = new ArrayList<OrderItem>();
 		this.CustomerID = customerID;
 		this.loadOrders();
 	}
@@ -29,7 +29,7 @@ public class Customer extends org.eap.dao.businessobject.Customer
 	{
 		double total = 0.00;
 
-		for(Order order : Orders)
+		for(OrderItem order : Orders)
 		{
 			total += (order.Product.Price * order.Quanty) - order.Discount;
 		}
@@ -41,13 +41,13 @@ public class Customer extends org.eap.dao.businessobject.Customer
 	 */
 	private void loadOrders()
 	{
-		OrderRepository orderRepo = new OrderRepository();
-		Result<org.eap.dao.businessobject.Order> result = orderRepo.getOrdersByCustomer(this.CustomerID);
+		OrderItemRepository orderRepo = new OrderItemRepository();
+		Result<org.eap.dao.businessobject.OrderItem> result = orderRepo.getOrderItemsByCustomer(this.CustomerID);
 
 		// Retrieve orders from result
-		for(org.eap.dao.businessobject.Order item :  result.Items)
+		for(org.eap.dao.businessobject.OrderItem item :  result.Items)
 		{
-			Order order = new Order(item.OrderID);
+			OrderItem order = new OrderItem(item.OrderItemID);
 			Orders.add(order);
 		}
 	}

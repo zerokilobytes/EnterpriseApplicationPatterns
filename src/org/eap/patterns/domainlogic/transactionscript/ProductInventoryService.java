@@ -12,6 +12,12 @@ import org.eap.dao.businessobject.Product;
  */
 public class ProductInventoryService implements ProductService
 {
+	Gateway gateway;
+	
+	public ProductInventoryService(Gateway gateway)
+	{
+		this.gateway = gateway;
+	}
 	/**
 	 * Get the 
 	 * @throws Exception 
@@ -24,12 +30,10 @@ public class ProductInventoryService implements ProductService
 
 		try
         {
-    		// Create instance of gate way
-            Gateway gateway = new ProductGateway();
             Result<Product> result = null;
 
             // Find get products by supplier
-    		result = gateway.getProductsBySupplier(supplierID);
+    		result = this.gateway.getProductsBySupplier(supplierID);
 
     		// Compute the total amount
     	    Iterator<Product> iter = result.Items.iterator();

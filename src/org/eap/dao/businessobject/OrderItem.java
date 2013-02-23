@@ -2,9 +2,9 @@ package org.eap.dao.businessobject;
 
 import java.util.Date;
 
-public class Order
+public class OrderItem
 {
-	public int OrderID;
+	public int OrderItemID;
 	public int ProductID;
 	public int Quanty;
 	public double Discount;

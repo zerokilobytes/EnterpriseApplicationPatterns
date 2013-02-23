@@ -3,7 +3,7 @@ package org.eap.dao.datasource;
 import java.util.Date;
 
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Order;
+import org.eap.dao.businessobject.OrderItem;
 import org.eap.dao.businessobject.Product;
 
 
@@ -34,18 +34,18 @@ public class Mock
 		return product;
 	}
 	
-	public static Order createOrder( int orderID, int productID, int quanty, double discount, Date orderDate, Date shippingDate, boolean delivered)
+	public static OrderItem createOrderItem( int OrderItemID, int productID, int quanty, double discount, Date OrderItemDate, Date shippingDate, boolean delivered)
 	{
-		Order order			= new Order();
-		order.OrderID 		= orderID;
-		order.ProductID 	= productID;
-		order.Quanty 		= quanty;
-		order.Discount 		= discount;
-		order.OrderDate 	= orderDate;
-		order.ShippingDate 	= shippingDate;
-		order.Delivered 	= delivered;
+		OrderItem OrderItem			= new OrderItem();
+		OrderItem.OrderItemID 		= OrderItemID;
+		OrderItem.ProductID 	= productID;
+		OrderItem.Quanty 		= quanty;
+		OrderItem.Discount 		= discount;
+		OrderItem.OrderDate 	= OrderItemDate;
+		OrderItem.ShippingDate 	= shippingDate;
+		OrderItem.Delivered 	= delivered;
 
-		return order;
+		return OrderItem;
 	}
 
 	public static Result<Product> getProductByID(int productID) {
@@ -57,27 +57,27 @@ public class Mock
 		return result;
 	}
 	
-	public static Result<Order> getOrdersByCustomer(int customerID) {
-		Result<Order> result = new Result<Order>();
+	public static Result<OrderItem> getOrderItemsByCustomer(int customerID) {
+		Result<OrderItem> result = new Result<OrderItem>();
 
-		Order order1 = createOrder(1, customerID, 10, 50.00, new Date(), new Date(), false);
-		Order order2 = createOrder(2, customerID, 10, 50.00, new Date(), new Date(), false);
-		Order order3 = createOrder(3, customerID, 10, 50.00, new Date(), new Date(), false);
+		OrderItem OrderItem1 = createOrderItem(1, customerID, 10, 50.00, new Date(), new Date(), false);
+		OrderItem OrderItem2 = createOrderItem(2, customerID, 10, 50.00, new Date(), new Date(), false);
+		OrderItem OrderItem3 = createOrderItem(3, customerID, 10, 50.00, new Date(), new Date(), false);
 		
-		result.Items.add(order1);
-		result.Items.add(order2);
-		result.Items.add(order3);
+		result.Items.add(OrderItem1);
+		result.Items.add(OrderItem2);
+		result.Items.add(OrderItem3);
 
 		return result;
 	}
 	
-	public static Result<Order> getOrderByOrderID(int orderID)
+	public static Result<OrderItem> getOrderItemByID(int OrderItemID)
 	{
-		Result<Order> result = new Result<Order>();
+		Result<OrderItem> result = new Result<OrderItem>();
 
-		Order order = createOrder(1, orderID, 10, 50.00, new Date(), new Date(), false);
+		OrderItem OrderItem = createOrderItem(1, OrderItemID, 10, 50.00, new Date(), new Date(), false);
 
-		result.Items.add(order);
+		result.Items.add(OrderItem);
 
 		return result;
 	}

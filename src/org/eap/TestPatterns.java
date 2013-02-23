@@ -1,6 +1,8 @@
 package org.eap;
 
 import org.eap.patterns.domainlogic.domainmodel.DiscountBillingStrategy;
+import org.eap.patterns.domainlogic.transactionscript.Gateway;
+import org.eap.patterns.domainlogic.transactionscript.ProductGateway;
 import org.eap.patterns.domainlogic.transactionscript.ProductInventoryService;
 
 
@@ -26,7 +28,11 @@ public class TestPatterns
 
 	public static void tracsactionScript() {
 		double cost = 0;
-		ProductInventoryService service = new ProductInventoryService();
+		
+		// Create instance of gate way
+        Gateway gateway = new ProductGateway();
+        
+		ProductInventoryService service = new ProductInventoryService(gateway);
 		try {
 			cost = service.CalculateCostOfProductsBySupplier(1);
 		} catch (Exception e) {
