@@ -10,4 +10,5 @@ import org.eap.dao.businessobject.*;
 public interface Gateway 
 {
 	Result<Product> getProductsBySupplier(int supplierID);
+	Result<Product> getProductByID(int productID);
 }
