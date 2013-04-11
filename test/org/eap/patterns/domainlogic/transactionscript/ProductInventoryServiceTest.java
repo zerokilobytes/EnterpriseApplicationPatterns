@@ -31,7 +31,7 @@ public class ProductInventoryServiceTest {
 			e.printStackTrace();
 		}
 
-		assertEquals(1900.00, cost, 0);
+		assertEquals("The cost of the products must be correct", 1900.00, cost, 0);
 	}
 	
 	@Test
@@ -50,6 +50,6 @@ public class ProductInventoryServiceTest {
 			e.printStackTrace();
 		}
 		
-		assertEquals("Electric Stove", productName);
+		assertEquals("The product that was looked up must be correct", "Electric Stove", productName);
 	}
 }
