@@ -2,7 +2,7 @@ package org.eap.patterns.domainlogic.domainmodel;
 
 /**
  * DiscountBillingStrategy class
- * @author Markel Mairs
+ * @author zerobytes
  */
 public class DiscountBillingStrategy 
 {
@@ -12,8 +12,8 @@ public class DiscountBillingStrategy
 	 * @return
 	 */
 	public double getCustomerOrdersCost(int customerID)  
-    {  
+	{  
 		Customer customer = new Customer(customerID);
 		return customer.getTotalCostOfOrders();
-    }
+	}
 }

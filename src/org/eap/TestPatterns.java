@@ -1,7 +1,7 @@
 package org.eap;
 
 /**
- * @author Zerobytes
+ * @author zerobytes
  * 
  * 
  */

@@ -5,7 +5,7 @@ import org.eap.dao.businessobject.*;
 
 /**
  * Gateway class
- * @author Markel Mairs
+ * @author zerobytes
  */
 public interface Gateway 
 {

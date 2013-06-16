@@ -7,7 +7,7 @@ import org.eap.dao.datasource.Mock;
 /**
  * ProductGateway class
  * 
- * @author Markel Mairs
+ * @author zerobytes
  */
 public class ProductGateway implements Gateway {
 	/**

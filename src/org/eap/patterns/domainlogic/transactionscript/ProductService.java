@@ -2,7 +2,7 @@ package org.eap.patterns.domainlogic.transactionscript;
 
 /**
  * ProductInventoryService class
- * @author Markel Mairs
+ * @author zerobytes
  */
 public interface ProductService 
 {

@@ -7,7 +7,7 @@ import org.eap.dao.businessobject.Product;
 
 /**
  * Order class
- * @author Markel Mairs
+ * @author zerobytes
  */
 public class OrderItem extends org.eap.dao.businessobject.OrderItem
 {

@@ -8,7 +8,7 @@ import org.eap.dao.businessobject.Product;
 
 /**
  * ProductInventoryService class
- * @author Markel Mairs
+ * @author zerobytes
  */
 public class ProductInventoryService implements ProductService
 {

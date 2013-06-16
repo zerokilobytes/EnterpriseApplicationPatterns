@@ -8,7 +8,7 @@ import org.eap.dao.datasource.mock.OrderItemRepository;
 
 /**
  * Customer class
- * @author Markel Mairs
+ * @author zerobytes
  */
 public class Customer extends org.eap.dao.businessobject.Customer
 {
@@ -43,7 +43,7 @@ public class Customer extends org.eap.dao.businessobject.Customer
 	{
 		OrderItemRepository orderRepo = new OrderItemRepository();
 		Result<org.eap.dao.businessobject.OrderItem> result = orderRepo.getOrderItemsByCustomer(this.CustomerID);
-
+		
 		// Retrieve orders from result
 		for(org.eap.dao.businessobject.OrderItem item :  result.Items)
 		{
