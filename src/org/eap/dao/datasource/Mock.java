@@ -3,6 +3,8 @@ package org.eap.dao.datasource;
 import java.util.Date;
 
 import org.eap.dao.Result;
+import org.eap.dao.businessobject.Customer;
+import org.eap.dao.businessobject.CustomerOrder;
 import org.eap.dao.businessobject.OrderItem;
 import org.eap.dao.businessobject.Product;
 
@@ -12,10 +14,8 @@ public class Mock
 {
 	private static Result<Product> products = new Result<Product>();
 	private static Result<OrderItem> orderItems = new Result<OrderItem>();
-	
-	static {
-		addProducts();
-	}
+	private static Result<Customer> customers = new Result<Customer>();
+	private static Result<CustomerOrder> customerOrders = new Result<CustomerOrder>();
 	
 	public static boolean addProduct(Product product)
 	{
@@ -28,6 +28,36 @@ public class Mock
 	public static void clearProducts()
 	{
 		products.Items.clear();
+	}
+	
+	public static void clearCustomers()
+	{
+		customers.Items.clear();
+	}
+	
+	public static boolean addCustomer(int customerID, String firstName, String lastName, String addressLine1, String addressLine2, String city, String state, String country, String phoneNumber, String email)
+	{
+		Customer customer = createCustomer( customerID,  firstName,  lastName,  addressLine1,  addressLine2,  city,  state,  country,  phoneNumber,  email);
+		return customers.Items.add(customer); 
+	}
+	
+
+	public static Customer createCustomer(int customerID, String firstName, String lastName, String addressLine1, String addressLine2, String city, String state, String country, String phoneNumber, String email)
+	{
+		Customer customer 	= new Customer();
+		
+		customer.CustomerID 	= customerID;
+		customer.FirstName 		= firstName;
+		customer.LastName 		= lastName;
+		customer.AddressLine1 	= addressLine1;
+		customer.AddressLine2 	= addressLine2;
+		customer.City 			= city;
+		customer.State 			= state;
+		customer.Country 		= country;
+		customer.PhoneNumber 	= phoneNumber;
+		customer.Email 			= email;
+		
+		return customer;
 	}
 	
 	public static boolean addProduct( int productID, int supplierID, double price, String productName, String productDescription, Boolean inStock)
@@ -48,14 +78,38 @@ public class Mock
 		return product;
 	}
 	
-	public static OrderItem createOrderItem( int OrderItemID, int productID, int quanty, double discount, Date OrderItemDate, Date shippingDate, boolean delivered)
+	public static boolean addOrderItem( int orderItemID, int productID, int quanty, double discount, Date orderItemDate, Date shippingDate, boolean delivered)
+	{
+		OrderItem orderItem = createOrderItem(orderItemID,  productID,  quanty, discount, orderItemDate, shippingDate, delivered);
+		return orderItems.Items.add(orderItem);
+	}
+	
+	public static boolean addCustomerOrder(int customerOrderID, int orderItemID, int customerID)
+	{
+		CustomerOrder customerOrder = createCustomerOrder(customerOrderID, orderItemID,customerID);
+		return customerOrders.Items.add(customerOrder);
+	}
+	
+	
+	public static CustomerOrder createCustomerOrder(int customerOrderID, int orderItemID, int customerID)
+	{
+		 CustomerOrder customerOrder = new CustomerOrder();
+		 
+		 customerOrder.CustomerOrderID 	= customerOrderID;
+		 customerOrder.OrderItemID 		= orderItemID;
+		 customerOrder.CustomerID 		= customerID;
+		 
+		 return customerOrder;
+	}
+	
+	public static OrderItem createOrderItem( int orderItemID, int productID, int quanty, double discount, Date orderItemDate, Date shippingDate, boolean delivered)
 	{
 		OrderItem OrderItem			= new OrderItem();
-		OrderItem.OrderItemID 		= OrderItemID;
+		OrderItem.OrderItemID 		= orderItemID;
 		OrderItem.ProductID 	= productID;
 		OrderItem.Quanty 		= quanty;
 		OrderItem.Discount 		= discount;
-		OrderItem.OrderDate 	= OrderItemDate;
+		OrderItem.OrderDate 	= orderItemDate;
 		OrderItem.ShippingDate 	= shippingDate;
 		OrderItem.Delivered 	= delivered;
 
@@ -65,44 +119,49 @@ public class Mock
 	public static Result<Product> getProductByID(int productID) {
 		Result<Product> result = new Result<Product>();
 		
-		Product product = createProduct(1, 1, 950.00, "Electric Stove", "Silver Electric Stove", true);
-		result.Items.add(product);
-
+		for(Product prouct : products.Items)
+		{
+			if(prouct.ProductID ==productID)
+			{
+				result.Items.add(prouct);
+			}
+		}
 		return result;
 	}
 	
-	public static Result<OrderItem> getOrderItemsByCustomer(int customerID) {
+	public static Result<OrderItem> getOrderItemsByCustomer(int customerID) 
+	{
 		Result<OrderItem> customerOrderItems = new Result<OrderItem>();
 		
-		OrderItem OrderItem1 = createOrderItem(1, customerID, 10, 50.00, new Date(), new Date(), false);
-		OrderItem OrderItem2 = createOrderItem(2, customerID, 10, 50.00, new Date(), new Date(), false);
-		OrderItem OrderItem3 = createOrderItem(3, customerID, 10, 50.00, new Date(), new Date(), false);
-		
-		customerOrderItems.Items.add(OrderItem1);
-		customerOrderItems.Items.add(OrderItem2);
-		customerOrderItems.Items.add(OrderItem3);
+		for(CustomerOrder customerOrder : customerOrders.Items)
+		{
+			if(customerOrder.CustomerID == customerID)
+			{
+				for(OrderItem orderItem : orderItems.Items)
+				{
+					if(orderItem.OrderItemID == customerOrder.OrderItemID)
+					{
+						customerOrderItems.Items.add(orderItem);
+					}
+				}
+			}
+		}
 
 		return orderItems;
 	}
 	
-	public static Result<OrderItem> getOrderItemByID(int OrderItemID)
+	public static Result<OrderItem> getOrderItemByID(int orderItemID)
 	{
 		Result<OrderItem> result = new Result<OrderItem>();
 
-		OrderItem OrderItem = createOrderItem(1, OrderItemID, 10, 50.00, new Date(), new Date(), false);
-
-		result.Items.add(OrderItem);
+		for(OrderItem orderItem : orderItems.Items)
+		{
+			if(orderItem.OrderItemID == orderItemID)
+			{
+				result.Items.add(orderItem);
+			}
+		}
 
 		return result;
-	}
-	
-	
-	private static void addProducts()
-	{
-		products.Items.add(createProduct(10003, 1, 950.00, "Electric Stove", "Silver Electric Stove", true));
-		products.Items.add(createProduct(10004, 1, 4000.00, "Toster", "Black Electric Toster", false));
-		products.Items.add(createProduct(10005, 2, 200.00, "Speaker", "Large Speakers", true));
-		products.Items.add(createProduct(10006, 2, 150.00, "Washig Machine", "4X Washig Machine", false));
-		products.Items.add(createProduct(10007, 3, 150.00, "Dish Washer", "Small Dish Washer", true));
 	}
 }

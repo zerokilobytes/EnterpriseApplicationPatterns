@@ -31,7 +31,7 @@ public class Customer extends org.eap.dao.businessobject.Customer
 
 		for(OrderItem order : Orders)
 		{
-			total += (order.Product.Price * order.Quanty) - order.Discount;
+			total += (order.Product.Price * order.Quanty) * (1.00 - order.Discount);
 		}
 		return total;
 	}
