@@ -1,7 +1,7 @@
 package org.eap.dao.datasource;
 import java.sql.*;
 
-class DB 
+public class DB 
 {
 	private static DataSource dataSource = null;
 	

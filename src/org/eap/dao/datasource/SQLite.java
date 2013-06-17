@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Scanner;
-class SQLite implements DataSource
+public class SQLite implements DataSource
 {
 	protected Connection connection = null;
 	
