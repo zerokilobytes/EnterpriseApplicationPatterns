@@ -1,0 +1,55 @@
+CREATE TABLE IF NOT EXISTS Customer
+(
+	CustomerID 			INTEGER PRIMARY KEY AUTOINCREMENT,
+	FirstName  			VARCHAR(50),
+	LastName  			VARCHAR(50),
+	AddressLine1  		VARCHAR(50),
+	AddressLine2  		VARCHAR(50),
+	City  				VARCHAR(50),
+	State  				VARCHAR(50),
+	Country  			VARCHAR(50),
+	PhoneNumber  		VARCHAR(50),
+	Email  				VARCHAR(50)
+);
+
+<END-OF-STATEMENT>
+
+CREATE TABLE IF NOT EXISTS OrderItem
+(
+	OrderItemID 		INTEGER PRIMARY KEY AUTOINCREMENT,
+	ProductID   		INTEGER NOT NULL,
+	Quanty				INTEGER NOT NULL,
+	Discount    		DECIMAL(4,2),
+	OrderDate			DATE,
+	ShippingDate		DATE,
+	Delivered			BOOLEAN
+);
+
+<END-OF-STATEMENT>
+
+CREATE TABLE IF NOT EXISTS Product
+(
+	ProductID 			INTEGER PRIMARY KEY AUTOINCREMENT,
+	SupplierID 			INTEGER NOT NULL,
+	Price 				DECIMAL(18,2),
+	ProductName 		VARCHAR(50),
+	ProductDescription 	VARCHAR(1000),
+	InStock				BOOLEAN
+);
+
+<END-OF-STATEMENT>
+
+CREATE TABLE IF NOT EXISTS Supplier
+(
+	SupplierID 			INTEGER PRIMARY KEY AUTOINCREMENT,
+	SupplierName		VARCHAR(50)
+);
+
+<END-OF-STATEMENT>
+
+CREATE TABLE IF NOT EXISTS CustomerOrder
+(
+	CustomerOrderID 	INTEGER PRIMARY KEY AUTOINCREMENT,
+	OrderItemID			INTEGER NOT NULL,
+	CustomerID		INTEGER NOT NULL
+);
