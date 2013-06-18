@@ -16,7 +16,7 @@ public class ProductGateway
 	 * @return
 	 * @throws SQLException
 	 */
-	public Result<Product> findAll() throws SQLException
+	public synchronized Result<Product> findAll() throws SQLException
 	{
 		Result<Product> result = new Result<Product>();
 		Connection connection = null;
@@ -52,7 +52,7 @@ public class ProductGateway
 	    	throw e;
 		}
 	}
-	public Result<Product> findByProductName(String productName) throws SQLException
+	public synchronized Result<Product> findByProductName(String productName) throws SQLException
 	{
 		Result<Product> result = new Result<Product>();
 		Connection connection = null;
@@ -101,7 +101,7 @@ public class ProductGateway
 	 * @return
 	 * @throws SQLException
 	 */
-	public int addProduct(Integer supplierID, double price, String productName, String productDescription, Boolean inStock) throws SQLException
+	public synchronized int addProduct(Integer supplierID, double price, String productName, String productDescription, Boolean inStock) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement  prepStmt = null;
@@ -149,7 +149,7 @@ public class ProductGateway
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean updateProduct(Integer productID, Integer supplierID, double price, String productName, String productDescription, Boolean inStock) throws SQLException
+	public synchronized boolean updateProduct(Integer productID, Integer supplierID, double price, String productName, String productDescription, Boolean inStock) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement  prepStmt = null;
@@ -181,7 +181,7 @@ public class ProductGateway
 		}
 	}
 	
-	public boolean deleteProduct(Integer productID) throws SQLException
+	public synchronized boolean deleteProduct(Integer productID) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement  prepStmt = null;
