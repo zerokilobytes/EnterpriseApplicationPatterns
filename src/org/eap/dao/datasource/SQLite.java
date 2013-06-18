@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Scanner;
+
 public class SQLite implements DataSource
 {
 	protected Connection connection = null;
@@ -13,21 +14,21 @@ public class SQLite implements DataSource
 	{
 	    createTable();
 	}
-	protected boolean openConnection() {
+	protected boolean openConnection() 
+	{
 		try 
-	    {
-	      Class.forName("org.sqlite.JDBC");
-	      connection = DriverManager.getConnection("jdbc:sqlite:test.db");
-	      return true;
-	    } 
-	    catch ( Exception e ) 
-	    {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    }
-	    System.out.println("Opened database successfully");
-	    return false;
+		{
+			Class.forName("org.sqlite.JDBC");
+			connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+			return true;
+		} 
+		catch ( Exception e ) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		}
+		return false;
 	}
-	
+
 	public Connection getConnection()
 	{
 		openConnection();
@@ -62,27 +63,27 @@ public class SQLite implements DataSource
 	    	  stmt.execute(statement);
 	    	  stmt.close();
 	      }
-	      
-	      
 	      connection.close();
 	    } 
 	    catch ( Exception e ) 
 	    {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	    }
-	    System.out.println("Table created successfully");
 	}
-	
+
 	protected String[] getSetupScript()
 	{
-		 try {
+		try
+		{
 			return new Scanner( new File("sql/eap.sql") ).useDelimiter("\\A").next().split("<END-OF-STATEMENT>");
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e)
+		{
 			e.printStackTrace();
 		}
-		 return null;
+		return null;
 	}
-	
+
 	public static String convertStreamToString(InputStream is) 
 	{
 	    @SuppressWarnings("resource")
