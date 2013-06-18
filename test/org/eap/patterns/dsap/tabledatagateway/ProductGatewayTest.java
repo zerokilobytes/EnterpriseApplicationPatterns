@@ -18,18 +18,24 @@ public class ProductGatewayTest {
 	}
 	
 	@Test
-	public void testFindAll() throws SQLException {
-		ProductGateway gateway = new ProductGateway();
-		Result<Product> products = gateway.findAll();
-		products.getClass();
-	}
-
-	@Test
-	public void testAddProduct() throws SQLException 
+	public void testAddProduct() throws SQLException
 	{
 		ProductGateway gateway = new ProductGateway();
 		boolean result = gateway.addProduct(45646556, 1000.00, "Electric Stove", "Silver Electric Stove", true);
-		boolean v = result;
+		
+		assertTrue("Insert method for product must return true", result);
 	}
+	
+	@Test
+	public void testFindAll() throws SQLException 
+	{
+		ProductGateway gateway = new ProductGateway();
+		
+		gateway.addProduct(0, 0.00, "Test Product", "First Product", true);
+		Result<Product> products = gateway.findAll();
+		
+		assertNotNull("Find method must return products when proucts are added", products);
+	}
+
 
 }

@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS OrderItem
 CREATE TABLE IF NOT EXISTS Product
 (
 	ProductID 			INTEGER PRIMARY KEY AUTOINCREMENT,
-	SupplierID 			INTEGER NOT NULL,
+	SupplierID 			INTEGER,
 	Price 				DECIMAL(18,2),
 	ProductName 		VARCHAR(50),
 	ProductDescription 	VARCHAR(1000),

@@ -47,7 +47,7 @@ public class ProductGateway
 	public boolean addProduct(int supplierID, double price, String productName, String productDescription, Boolean inStock) throws SQLException
 	{
 		Connection connection = null;
-		PreparedStatement prepStmt = null;
+		PreparedStatement  prepStmt = null;
 	    try 
 	    {
 	    	connection = DB.getConnection();
@@ -55,13 +55,15 @@ public class ProductGateway
 
 	    	String sql = "INSERT INTO Product (SupplierID, Price, ProductName, ProductDescription, InStock) VALUES (?,?,?,?,?);";
 	    	prepStmt = connection.prepareStatement(sql);
-	    	prepStmt.executeUpdate(sql);
+	    	
 
 	    	prepStmt.setInt(1, supplierID);
 	    	prepStmt.setDouble(2, price);
 	    	prepStmt.setString(3, productName);
 	    	prepStmt.setString(4, productDescription);
-	    	prepStmt.setBoolean(5, inStock); 
+	    	prepStmt.setBoolean(5, inStock);
+	    	
+	    	prepStmt.executeUpdate();
 
 	    	prepStmt.close();
 			DB.closeConnection();
