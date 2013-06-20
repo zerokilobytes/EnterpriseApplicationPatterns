@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 
 import org.eap.dao.DataTable;
-import org.eap.dao.Result;
 import org.eap.dao.businessobject.Product;
 import org.eap.dao.datasource.DB;
 import org.eap.dao.datasource.SQLite;
