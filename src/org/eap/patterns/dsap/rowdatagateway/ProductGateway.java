@@ -26,12 +26,6 @@ public class ProductGateway extends Product
 		return ProductID;
 	}
 	/**
-	 * @param productID the productID to set
-	 */
-	public synchronized void setProductID(int productID) {
-		ProductID = productID;
-	}
-	/**
 	 * @return the supplierID
 	 */
 	public synchronized int getSupplierID() {
