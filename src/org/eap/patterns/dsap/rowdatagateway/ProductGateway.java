@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.eap.dao.Result;
 import org.eap.dao.businessobject.Product;
 import org.eap.dao.datasource.DB;
 
-public class ProductGateway extends Product
+public class ProductGateway extends Product implements Gateway
 {
 	/**
 	 * Constructor
@@ -178,7 +179,7 @@ public class ProductGateway extends Product
 
 			ResultSet rs = prepStmt.executeQuery();
 
-			while (rs.next()) 
+			while (rs.next())
 			{
 				product = new ProductGateway();
 				product.ProductID 			= rs.getInt("ProductID");
@@ -187,6 +188,83 @@ public class ProductGateway extends Product
 				product.ProductName 		= rs.getString("ProductName");
 				product.ProductDescription 	= rs.getString("ProductDescription");
 				product.InStock 			= rs.getBoolean("InStock"); 
+			}
+			rs.close();
+			prepStmt.close();
+			DB.closeConnection();
+			return product;
+		}
+		catch (Exception e) 
+		{
+	    	throw e;
+		}
+	}
+	
+	public synchronized static Result<ProductGateway> getProductsBySupplier(int supplierID) throws SQLException
+	{
+		Result<ProductGateway> result = new Result<ProductGateway>();
+		Connection connection = null;
+		PreparedStatement  prepStmt = null;
+		try 
+		{
+			connection = DB.getConnection();
+			connection.setAutoCommit(true);
+
+			prepStmt = connection.prepareStatement("SELECT * FROM Product WHERE SupplierID = ?;");
+			prepStmt.setInt(1, supplierID);
+			prepStmt.setMaxRows(1); 
+
+			ResultSet rs = prepStmt.executeQuery();
+
+			while (rs.next()) 
+			{
+				ProductGateway product = new ProductGateway();
+
+				product.ProductID 			= rs.getInt("ProductID");
+				product.SupplierID 			= rs.getInt("SupplierID");
+				product.Price 				= rs.getDouble("Price");
+				product.ProductName 		= rs.getString("ProductName");
+				product.ProductDescription 	= rs.getString("ProductDescription");
+				product.InStock 			= rs.getBoolean("InStock"); 
+
+				result.Items.add(product);
+			}
+			rs.close();
+			prepStmt.close();
+			DB.closeConnection();
+			return result;
+		}
+		catch (Exception e) 
+		{
+	    	throw e;
+		}
+	}
+	
+	public synchronized static ProductGateway getProductByID(int productID) throws SQLException
+	{
+		ProductGateway product = null;
+		Connection connection = null;
+		PreparedStatement  prepStmt = null;
+		try 
+		{
+			connection = DB.getConnection();
+			connection.setAutoCommit(true);
+
+			prepStmt = connection.prepareStatement("SELECT * FROM Product WHERE ProductID = ?;");
+			prepStmt.setInt(1, productID);
+			prepStmt.setMaxRows(1); 
+
+			ResultSet rs = prepStmt.executeQuery();
+
+			while (rs.next())
+			{
+				product = new ProductGateway();
+				product.ProductID 			= rs.getInt("ProductID");
+				product.SupplierID 			= rs.getInt("SupplierID");
+				product.Price 				= rs.getDouble("Price");
+				product.ProductName 		= rs.getString("ProductName");
+				product.ProductDescription 	= rs.getString("ProductDescription");
+				product.InStock 			= rs.getBoolean("InStock");
 			}
 			rs.close();
 			prepStmt.close();

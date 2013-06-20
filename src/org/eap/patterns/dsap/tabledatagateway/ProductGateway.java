@@ -16,9 +16,9 @@ public class ProductGateway
 	 * @return
 	 * @throws SQLException
 	 */
-	public synchronized Result<Product> findAll() throws SQLException
+	public synchronized DataTable<Product> findAll() throws SQLException
 	{
-		Result<Product> result = new Result<Product>();
+		DataTable<Product> result = new DataTable<Product>();
 		Connection connection = null;
 		Statement stmt = null;
 		try 
@@ -40,7 +40,7 @@ public class ProductGateway
 				product.ProductDescription 	= rs.getString("ProductDescription");
 				product.InStock				= rs.getBoolean("InStock"); 
 
-				result.Items.add(product);
+				result.addRow(product);
 			}
 			rs.close();
 			stmt.close();

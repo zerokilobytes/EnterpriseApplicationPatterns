@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 
+import org.eap.dao.DataTable;
 import org.eap.dao.Result;
 import org.eap.dao.businessobject.Product;
 import org.eap.dao.datasource.DB;
@@ -32,7 +33,7 @@ public class ProductGatewayTest {
 		ProductGateway gateway = new ProductGateway();
 
 		gateway.addProduct(0, 0.00, "Test Product", "First Product", true);
-		Result<Product> products = gateway.findAll();
+		DataTable<Product> products = gateway.findAll();
 
 		assertNotNull("Find method must return products when proucts are added", products);
 	}

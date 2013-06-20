@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Markel Mairs
+ * @author zerobytes
  *
  * @param <T>
  */

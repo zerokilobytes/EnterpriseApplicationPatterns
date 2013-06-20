@@ -7,5 +7,4 @@ package org.eap.patterns.domainlogic.transactionscript;
 public interface ProductService 
 {
 	double calculateCostOfProductsBySupplier(int supplier) throws Exception;
-	public String getProductNameByProductID(int productID) throws Exception;
 }

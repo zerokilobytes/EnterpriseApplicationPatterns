@@ -2,7 +2,7 @@ package org.eap.dao;
 
 /**
  * 
- * @author Markel Mairs
+ * @author zerobytes
  *
  * @param <T> Result Type
  */

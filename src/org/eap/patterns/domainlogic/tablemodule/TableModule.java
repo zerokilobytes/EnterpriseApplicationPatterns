@@ -1,27 +1,28 @@
 package org.eap.patterns.domainlogic.tablemodule;
 
-import org.eap.dao.DataRow;
+import org.eap.dao.DataRowCollection;
 import org.eap.dao.DataSet;
+import org.eap.dao.DataTable;
 
-public class TableModule 
+public abstract class TableModule 
 {
+	protected String tableName;
 	DataSet dataset;
 	public TableModule(DataSet ds)
 	{
 		this.dataset = ds;
 	}
 	
-	
-	public DataRow GetRow(int index)
+	protected DataTable<?> getTable()
+	{
+		return dataset.getTable(tableName);
+	}
+	public DataRowCollection<?> GetRows()
     {
-        //return _ds.Tables[0].Rows[index];
-		return null;
+		DataTable<?> table = getTable();
+		return table.getRows();
     }
 
-    public Object GetRowByID(int ID)
-    {
-        //return _ds.Tables[0].Select(...);
-    	return null;
-    }
+    public abstract Object GetRowByID(int ID);
 
 }

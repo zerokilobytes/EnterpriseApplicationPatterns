@@ -2,54 +2,32 @@ package org.eap.patterns.domainlogic.transactionscript;
 
 import static org.junit.Assert.*;
 
-import org.eap.dao.datasource.Mock;
+import java.sql.SQLException;
+
+import org.eap.dao.datasource.DB;
+import org.eap.dao.datasource.SQLite;
+import org.eap.patterns.dsap.rowdatagateway.ProductGateway;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ProductInventoryServiceTest {
-	int testSupplierID = 2535;
+	Integer testSupplierID = 2535;
 
 	@Before
-	public void setUp() {
-		Mock.clearProducts();
+	public void setUp() throws SQLException {
+		DB.setDataSource(new SQLite());
 
-		Mock.addProduct(1, testSupplierID, 950.00, "Electric Stove", "Silver Electric Stove", true);
-		Mock.addProduct(2, testSupplierID, 950.00, "Electric Stove", "White Electric Stove", true);
+		ProductGateway.insert(testSupplierID, 950.00, "Electric Stove", "Silver Electric Stove", true);
+		ProductGateway.insert(testSupplierID, 950.00, "Electric Stove", "White Electric Stove", true);
 	}
 
 	@Test
-	public void testCalculateCostOfProductsBySupplier() {
+	public void testCalculateCostOfProductsBySupplier() throws Exception
+	{
 		double cost = 0.00;
-
-		// Create instance of gate way
-		Gateway gateway = new ProductGateway();
-
-		ProductInventoryService service = new ProductInventoryService(gateway);
-		try {
-			cost = service.calculateCostOfProductsBySupplier(testSupplierID);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ProductService service = new ProductInventoryService();
+		cost = service.calculateCostOfProductsBySupplier(testSupplierID);
 
 		assertEquals("The cost of the products must be correct", 1900.00, cost, 0);
-	}
-	
-	@Test
-	public void testgetProductNameByProductID()
-	{
-		int productID = 1;
-		String productName = null;
-		
-		// Create instance of gate way
-		Gateway gateway = new ProductGateway();
-		
-		ProductInventoryService service = new ProductInventoryService(gateway);
-		try {
-			productName = service.getProductNameByProductID(productID);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		assertEquals("The product that was looked up must be correct", "Electric Stove", productName);
 	}
 }

@@ -2,9 +2,8 @@ package org.eap.patterns.domainlogic.transactionscript;
 
 
 import java.util.Iterator;
-
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Product;
+import org.eap.patterns.dsap.rowdatagateway.ProductGateway;
 
 /**
  * ProductInventoryService class
@@ -12,12 +11,6 @@ import org.eap.dao.businessobject.Product;
  */
 public class ProductInventoryService implements ProductService
 {
-	Gateway gateway;
-	
-	public ProductInventoryService(Gateway gateway)
-	{
-		this.gateway = gateway;
-	}
 	/**
 	 * Get the 
 	 * @throws Exception 
@@ -30,39 +23,24 @@ public class ProductInventoryService implements ProductService
 
 		try
         {
-            Result<Product> result = null;
+            Result<ProductGateway> result = null;
 
             // Find get products by supplier
-    		result = this.gateway.getProductsBySupplier(supplierID);
+    		result = ProductGateway.getProductsBySupplier(supplierID);
 
     		// Compute the total amount
-    	    Iterator<Product> iter = result.Items.iterator();
+    	    Iterator<ProductGateway> iter = result.Items.iterator();
     	    while(iter.hasNext())
     	    {
-    	    	Product item = iter.next();
+    	    	ProductGateway item = iter.next();
     	    	totalCost += item.Price;
     	    }
         }
         catch (Exception e)
         {
-            throw new Exception();
+            throw e;
         }
 
 	 	return totalCost;
-	}
-	
-	public String getProductNameByProductID(int productID) throws Exception
-	{
-		try 
-		{
-			Result<Product> result =  this.gateway.getProductByID(productID);
-			Product product =  result.Items.get(0);
-			return product.ProductName;
-		} catch (Exception e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
 	}
 }
