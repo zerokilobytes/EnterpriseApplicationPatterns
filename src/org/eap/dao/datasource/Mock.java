@@ -1,6 +1,6 @@
 package org.eap.dao.datasource;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.eap.dao.Result;
 import org.eap.dao.businessobject.Customer;

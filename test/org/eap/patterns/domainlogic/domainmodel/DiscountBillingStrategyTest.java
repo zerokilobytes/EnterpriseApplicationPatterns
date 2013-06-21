@@ -2,8 +2,6 @@ package org.eap.patterns.domainlogic.domainmodel;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
 import org.eap.dao.datasource.Mock;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +16,8 @@ public class DiscountBillingStrategyTest {
 		Mock.addProduct(10001, 45646556, 1000.00, "Electric Stove", "Silver Electric Stove", true);
 		Mock.addProduct(10002, 45646556, 2000.00, "Electric Stove", "White Electric Stove", true);
 
-		Mock.addOrderItem(901, 10001, 1, 0.20, new Date(), null, false); // 20% off $1000.00
-		Mock.addOrderItem(902, 10002, 1, 0.50, new Date(), null, false); // 50% off $2000.00
+		Mock.addOrderItem(901, 10001, 1, 0.20, null, null, false); // 20% off $1000.00
+		Mock.addOrderItem(902, 10002, 1, 0.50, null, null, false); // 50% off $2000.00
 
 		Mock.addCustomerOrder(10, 901, testCustomerID);
 		Mock.addCustomerOrder(11, 902, testCustomerID);
