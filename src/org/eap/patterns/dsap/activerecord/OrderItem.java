@@ -6,15 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
+import org.eap.dao.DataTable;
 import org.eap.dao.datasource.DB;
 
 /**
  * Order class
  * @author zerobytes
  */
-public class OrderItem extends org.eap.dao.businessobject.OrderItem
+public class OrderItem extends org.eap.dao.domainobject.OrderItem
 {
 	public Product Product;
 
@@ -102,9 +102,9 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 		}
 	}
 	
-	public synchronized static ArrayList<OrderItem> findOrderItemsbyCustomerID(int customerID) throws SQLException
+	public synchronized static DataTable<OrderItem> findOrderItemsbyCustomerID(int customerID) throws SQLException
 	{
-		ArrayList<OrderItem> result = new ArrayList<OrderItem>();
+		DataTable<OrderItem> result = new DataTable<OrderItem>();
 		Connection connection = null;
 		PreparedStatement  prepStmt = null;
 
@@ -133,7 +133,7 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 				order.Delivered 	= rs.getBoolean("Delivered");
 
 				order.loadProduct();
-				result.add(order);
+				result.addRow(order);
 			}
 			rs.close();
 			prepStmt.close();

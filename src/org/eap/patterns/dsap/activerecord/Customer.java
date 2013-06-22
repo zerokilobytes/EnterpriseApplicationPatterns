@@ -5,14 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
+import org.eap.dao.DataTable;
 import org.eap.dao.datasource.DB;
 
 
-public class Customer extends org.eap.dao.businessobject.Customer
+public class Customer extends org.eap.dao.domainobject.Customer
 {
-	public List<OrderItem> OrderItems;
+	public DataTable<OrderItem> OrderItems;
 
 	private Customer()
 	{
@@ -26,7 +26,7 @@ public class Customer extends org.eap.dao.businessobject.Customer
 	{
 		double total = 0.00;
 
-		for(OrderItem order : OrderItems)
+		for(OrderItem order : OrderItems.getRows())
 		{
 			total += (order.Product.Price * order.Quantity) * (1.00 - order.Discount);
 		}
@@ -142,7 +142,7 @@ public class Customer extends org.eap.dao.businessobject.Customer
 	    	ResultSet rs = prepStmt.getGeneratedKeys();
 	    	if (rs.next()){
 	    		insertedID = rs.getInt(1);
-	    		this.OrderItems.add(orderItem);
+	    		this.OrderItems.addRow(orderItem);
 	    	}
 
 			prepStmt.close();

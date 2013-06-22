@@ -3,7 +3,7 @@ package org.eap.patterns.dsap.tabledatagateway;
 import java.sql.*;
 import org.eap.dao.datasource.*;
 import org.eap.dao.*;
-import org.eap.dao.businessobject.Product;
+import org.eap.dao.domainobject.Product;
 
 /**
  * Product gateway

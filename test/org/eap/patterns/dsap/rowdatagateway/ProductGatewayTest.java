@@ -19,7 +19,7 @@ public class ProductGatewayTest
 	}
 	
 	@After
-	public void teaDown() 
+	public void tearDown() 
 	{
 		DB.closeConnection();
 	}

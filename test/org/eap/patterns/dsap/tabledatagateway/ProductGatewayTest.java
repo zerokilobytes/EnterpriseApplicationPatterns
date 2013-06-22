@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 
 import org.eap.dao.DataTable;
-import org.eap.dao.businessobject.Product;
+import org.eap.dao.domainobject.Product;
 import org.eap.dao.datasource.DB;
 import org.eap.dao.datasource.SQLite;
 import org.junit.After;
@@ -19,7 +19,7 @@ public class ProductGatewayTest {
 	}
 	
 	@After
-	public void teaDown() 
+	public void tearDown() 
 	{
 		DB.closeConnection();
 	}

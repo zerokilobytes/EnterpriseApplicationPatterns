@@ -1,4 +1,4 @@
-package org.eap.dao.businessobject;
+package org.eap.dao.domainobject;
 
 public class Product 
 {

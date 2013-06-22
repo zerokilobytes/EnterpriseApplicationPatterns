@@ -22,7 +22,7 @@ public class DiscountBillingStrategyTest
 	}
 
 	@After
-	public void teaDown() 
+	public void tearDown() 
 	{
 		DB.closeConnection();
 	}

@@ -9,7 +9,7 @@ import java.util.Scanner;
  * 
  * 
  */
-public class TestPatterns {
+public class Main {
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		//File file = new File("sql/eap.sql");

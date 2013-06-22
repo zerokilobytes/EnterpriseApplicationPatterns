@@ -2,7 +2,7 @@ package org.eap.patterns.domainlogic.tablemodule;
 
 import org.eap.dao.DataRowCollection;
 import org.eap.dao.DataSet;
-import org.eap.dao.businessobject.Product;
+import org.eap.dao.domainobject.Product;
 
 
 public class ProductTable extends TableModule

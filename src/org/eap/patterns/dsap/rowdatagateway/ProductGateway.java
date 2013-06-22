@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Product;
+import org.eap.dao.domainobject.Product;
 import org.eap.dao.datasource.DB;
 
 public class ProductGateway extends Product implements Gateway

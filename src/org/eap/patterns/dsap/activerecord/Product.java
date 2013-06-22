@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import org.eap.dao.DataTable;
 import org.eap.dao.datasource.DB;
 
-public class Product extends org.eap.dao.businessobject.Product
+public class Product extends org.eap.dao.domainobject.Product
 {
 	public OrderItem OrderItem;
 	/**

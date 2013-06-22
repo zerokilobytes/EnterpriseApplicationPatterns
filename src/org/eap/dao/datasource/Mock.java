@@ -3,10 +3,10 @@ package org.eap.dao.datasource;
 import java.sql.Date;
 
 import org.eap.dao.Result;
-import org.eap.dao.businessobject.Customer;
-import org.eap.dao.businessobject.CustomerOrder;
-import org.eap.dao.businessobject.OrderItem;
-import org.eap.dao.businessobject.Product;
+import org.eap.dao.domainobject.Customer;
+import org.eap.dao.domainobject.CustomerOrder;
+import org.eap.dao.domainobject.OrderItem;
+import org.eap.dao.domainobject.Product;
 
 
 

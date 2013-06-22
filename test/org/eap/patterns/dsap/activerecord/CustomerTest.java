@@ -20,7 +20,7 @@ public class CustomerTest {
 	}
 	
 	@After
-	public void teaDown() 
+	public void tearDown() 
 	{
 		DB.closeConnection();
 	}

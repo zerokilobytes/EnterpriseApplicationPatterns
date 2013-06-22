@@ -23,7 +23,7 @@ public class ProductInventoryServiceTest {
 	}
 	
 	@After
-	public void teaDown() 
+	public void tearDown() 
 	{
 		DB.closeConnection();
 	}

@@ -17,7 +17,7 @@ public class ProductTableTest
 	}
 	
 	@After
-	public void teaDown() 
+	public void tearDown() 
 	{
 		DB.closeConnection();
 	}
