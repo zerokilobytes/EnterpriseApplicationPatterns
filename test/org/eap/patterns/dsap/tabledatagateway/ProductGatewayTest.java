@@ -8,6 +8,7 @@ import org.eap.dao.DataTable;
 import org.eap.dao.businessobject.Product;
 import org.eap.dao.datasource.DB;
 import org.eap.dao.datasource.SQLite;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,12 @@ public class ProductGatewayTest {
 	@Before
 	public void setUp() {
 		DB.setDataSource(new SQLite());
+	}
+	
+	@After
+	public void teaDown() 
+	{
+		DB.closeConnection();
 	}
 
 	@Test

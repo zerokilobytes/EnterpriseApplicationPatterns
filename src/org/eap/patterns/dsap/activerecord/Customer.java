@@ -28,7 +28,7 @@ public class Customer extends org.eap.dao.businessobject.Customer
 
 		for(OrderItem order : OrderItems)
 		{
-			total += (order.Product.Price * order.Quanty) * (1.00 - order.Discount);
+			total += (order.Product.Price * order.Quantity) * (1.00 - order.Discount);
 		}
 		return total;
 	}
@@ -131,10 +131,11 @@ public class Customer extends org.eap.dao.businessobject.Customer
 
 	    	int insertedID = -1;
 
-	    	String sql = "INSERT INTO OrderItem (OrderItemID) VALUES (?);";
+	    	String sql = "INSERT INTO CustomerOrder (OrderItemID, CustomerID) VALUES (?,?);";
 	    	prepStmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			prepStmt.setInt(1, orderItem.OrderItemID);
+			prepStmt.setInt(2, this.CustomerID);
 
 	    	prepStmt.executeUpdate();
 

@@ -15,6 +15,12 @@ public class ProductTableTest
 	public void setUp() {
 		DB.setDataSource(new SQLite());
 	}
+	
+	@After
+	public void teaDown() 
+	{
+		DB.closeConnection();
+	}
 
 	@Test
 	public void testGetCostOfProduct() throws SQLException

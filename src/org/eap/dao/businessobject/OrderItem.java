@@ -6,7 +6,7 @@ public class OrderItem
 {
 	public int OrderItemID;
 	public int ProductID;
-	public int Quanty;
+	public int Quantity;
 	public double Discount;
 	public Date OrderDate;
 	public Date ShippingDate;

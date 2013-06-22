@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.eap.dao.datasource.DB;
 import org.eap.dao.datasource.SQLite;
 import org.eap.patterns.dsap.rowdatagateway.ProductGateway;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,12 @@ public class ProductGatewayTest
 	public void setUp() 
 	{
 		DB.setDataSource(new SQLite());
+	}
+	
+	@After
+	public void teaDown() 
+	{
+		DB.closeConnection();
 	}
 
 	@Test

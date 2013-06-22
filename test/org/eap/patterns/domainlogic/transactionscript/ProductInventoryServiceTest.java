@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import org.eap.dao.datasource.DB;
 import org.eap.dao.datasource.SQLite;
 import org.eap.patterns.dsap.rowdatagateway.ProductGateway;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +20,12 @@ public class ProductInventoryServiceTest {
 
 		ProductGateway.insert(testSupplierID, 950.00, "Electric Stove", "Silver Electric Stove", true);
 		ProductGateway.insert(testSupplierID, 950.00, "Electric Stove", "White Electric Stove", true);
+	}
+	
+	@After
+	public void teaDown() 
+	{
+		DB.closeConnection();
 	}
 
 	@Test

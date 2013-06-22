@@ -2,38 +2,47 @@ package org.eap.patterns.domainlogic.domainmodel;
 
 import static org.junit.Assert.*;
 
-import org.eap.dao.datasource.Mock;
+import java.sql.Date;
+
+import org.eap.dao.datasource.DB;
+import org.eap.dao.datasource.SQLite;
+import org.eap.patterns.dsap.activerecord.Customer;
+import org.eap.patterns.dsap.activerecord.OrderItem;
+import org.eap.patterns.dsap.activerecord.Product;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DiscountBillingStrategyTest {
-	int testCustomerID = 1; 
+public class DiscountBillingStrategyTest 
+{
 	@Before
-	public void setUp() {
-		Mock.clearCustomers();
-		Mock.addCustomer(testCustomerID, "Mary", "Bennet", "Great Mount", "Orange Street", "London", null, "Britain", "5555555", "mary@mail.com");
-
-		Mock.addProduct(10001, 45646556, 1000.00, "Electric Stove", "Silver Electric Stove", true);
-		Mock.addProduct(10002, 45646556, 2000.00, "Electric Stove", "White Electric Stove", true);
-
-		Mock.addOrderItem(901, 10001, 1, 0.20, null, null, false); // 20% off $1000.00
-		Mock.addOrderItem(902, 10002, 1, 0.50, null, null, false); // 50% off $2000.00
-
-		Mock.addCustomerOrder(10, 901, testCustomerID);
-		Mock.addCustomerOrder(11, 902, testCustomerID);
+	public void setUp() 
+	{
+		DB.setDataSource(new SQLite());
 	}
 
+	@After
+	public void teaDown() 
+	{
+		DB.closeConnection();
+	}
+	
 	@Test
-	public void testGetCustomerOrdersCost() {
+	public void testGetCustomerOrdersCost() throws Exception 
+	{
 		double cost = 0.00;
+		
+		int productID = Product.insert(1, 500.0, "Sample Product", "Sample product for testing", false);
+		int customerID = Customer.insert("Jack", "Sparrow", "Core valley", "Bermuda", "Bermuda City", "", "Bermuda", "555-5555", "sparrow@nomail.com");
+		int orderItemID = OrderItem.insert(productID, 3, 0.50, Date.valueOf("2013-12-25"), Date.valueOf("2013-12-25"), false);
+
+		OrderItem orderItem = OrderItem.find(orderItemID);
+		Customer customer = Customer.find(customerID);
+		customer.insertCustomerOrder(orderItem);
 
 		DiscountBillingStrategy strategy = new DiscountBillingStrategy();
-		try {
-			cost = strategy.getCustomerOrdersCost(testCustomerID);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		cost = strategy.getCustomerOrdersCost(customerID);
 
-		assertEquals("The billing must be correct after the discount is applied", 1800.00, cost, 0);
+		assertEquals("The billing must be correct after the discount is applied", 750.00, cost, 0);
 	}
 }

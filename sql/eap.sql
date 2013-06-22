@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS OrderItem
 (
 	OrderItemID 		INTEGER PRIMARY KEY AUTOINCREMENT,
 	ProductID   		INTEGER NOT NULL,
-	Quanty				INTEGER NOT NULL,
+	Quantity			INTEGER NOT NULL,
 	Discount    		DECIMAL(4,2),
 	OrderDate			DATE,
 	ShippingDate		DATE,

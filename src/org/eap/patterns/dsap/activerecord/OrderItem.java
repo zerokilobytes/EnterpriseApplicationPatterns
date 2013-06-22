@@ -23,7 +23,7 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 
 	}
 	
-	public synchronized static int insert(int productID, int quanty, double discount, Date orderItemDate, Date shippingDate, boolean delivered) throws SQLException
+	public synchronized static int insert(int productID, int quantity, double discount, Date orderItemDate, Date shippingDate, boolean delivered) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement  prepStmt = null;
@@ -35,11 +35,11 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 
 	    	int insertedID = -1;
 
-	    	String sql = "INSERT INTO OrderItem (ProductID, Quanty, Discount, OrderDate, ShippingDate, Delivered) VALUES (?,?,?,?,?,?);";
+	    	String sql = "INSERT INTO OrderItem (ProductID, Quantity, Discount, OrderDate, ShippingDate, Delivered) VALUES (?,?,?,?,?,?);";
 	    	prepStmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 	    	prepStmt.setInt(1, productID);
-	    	prepStmt.setInt(2, quanty);
+	    	prepStmt.setInt(2, quantity);
 	    	prepStmt.setDouble(3, discount);
 	    	prepStmt.setDate(4, orderItemDate);
 	    	prepStmt.setDate(5, shippingDate);
@@ -83,7 +83,7 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 				order = new OrderItem();
 				order.OrderItemID 	= rs.getInt("OrderItemID");
 				order.ProductID 	= rs.getInt("ProductID");
-				order.Quanty 		= rs.getInt("Quanty");
+				order.Quantity 		= rs.getInt("Quantity");
 				order.Discount 		= rs.getDouble("Discount");
 				order.OrderDate 	= rs.getDate("OrderDate");
 				order.ShippingDate 	= rs.getDate("ShippingDate");
@@ -126,7 +126,7 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 				order = new OrderItem();
 				order.OrderItemID 	= rs.getInt("OrderItemID");
 				order.ProductID 	= rs.getInt("ProductID");
-				order.Quanty 		= rs.getInt("Quanty");
+				order.Quantity 		= rs.getInt("Quantity");
 				order.Discount 		= rs.getDouble("Discount");
 				order.OrderDate 	= rs.getDate("OrderDate");
 				order.ShippingDate 	= rs.getDate("ShippingDate");

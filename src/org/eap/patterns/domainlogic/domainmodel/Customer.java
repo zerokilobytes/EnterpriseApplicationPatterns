@@ -1,15 +1,11 @@
 package org.eap.patterns.domainlogic.domainmodel;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eap.dao.Result;
 import org.eap.dao.datasource.mock.OrderItemRepository;
 
-/**
- * Customer class
- * @author zerobytes
- */
 public class Customer extends org.eap.dao.businessobject.Customer
 {
 	public List<OrderItem> Orders;
@@ -21,10 +17,7 @@ public class Customer extends org.eap.dao.businessobject.Customer
 		this.loadOrders();
 	}
 
-	/**
-	 * Get the total cost of customer orders
-	 * @return
-	 */
+	
 	public double getTotalCostOfOrders()
 	{
 		double total = 0.00;
@@ -36,9 +29,6 @@ public class Customer extends org.eap.dao.businessobject.Customer
 		return total;
 	}
 
-	/**
-	 * Load orders for customers
-	 */
 	private void loadOrders()
 	{
 		OrderItemRepository orderRepo = new OrderItemRepository();
@@ -51,4 +41,4 @@ public class Customer extends org.eap.dao.businessobject.Customer
 			Orders.add(order);
 		}
 	}
-}
+}*/

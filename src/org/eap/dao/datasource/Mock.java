@@ -102,12 +102,12 @@ public class Mock
 		 return customerOrder;
 	}
 	
-	public static OrderItem createOrderItem( int orderItemID, int productID, int quanty, double discount, Date orderItemDate, Date shippingDate, boolean delivered)
+	public static OrderItem createOrderItem( int orderItemID, int productID, int quantity, double discount, Date orderItemDate, Date shippingDate, boolean delivered)
 	{
 		OrderItem OrderItem			= new OrderItem();
 		OrderItem.OrderItemID 		= orderItemID;
 		OrderItem.ProductID 	= productID;
-		OrderItem.Quanty 		= quanty;
+		OrderItem.Quantity 		= quantity;
 		OrderItem.Discount 		= discount;
 		OrderItem.OrderDate 	= orderItemDate;
 		OrderItem.ShippingDate 	= shippingDate;

@@ -1,14 +1,10 @@
 package org.eap.patterns.domainlogic.domainmodel;
-
+/*
 import org.eap.dao.Result;
 import org.eap.dao.datasource.mock.OrderItemRepository;
 import org.eap.dao.datasource.mock.ProductRepository;
 import org.eap.dao.businessobject.Product;
 
-/**
- * Order class
- * @author zerobytes
- */
 public class OrderItem extends org.eap.dao.businessobject.OrderItem
 {
 	public Product Product;
@@ -19,9 +15,6 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 		this.load();
 	}
 
-	/**
-	 * Load ordered Product
-	 */
 	private void load()
 	{
 		OrderItemRepository ordeRepo = new OrderItemRepository();
@@ -39,3 +32,4 @@ public class OrderItem extends org.eap.dao.businessobject.OrderItem
 		this.Delivered 		= order.Delivered;
 	}
 }
+*/
