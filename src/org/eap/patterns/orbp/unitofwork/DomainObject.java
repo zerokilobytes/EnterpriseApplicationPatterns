@@ -1,5 +1,7 @@
 package org.eap.patterns.orbp.unitofwork;
 
+import java.sql.SQLException;
+
 interface DomainObject
 {
 	void markNew();
@@ -7,7 +9,7 @@ interface DomainObject
 	void markDirty();
 	void markRemoved();
 
-	boolean insert();
+	boolean insert() throws SQLException;
 	boolean update();
 	boolean delete();
 }
