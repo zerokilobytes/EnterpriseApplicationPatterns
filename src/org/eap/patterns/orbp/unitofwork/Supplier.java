@@ -100,7 +100,7 @@ public class Supplier extends org.eap.dao.domainobject.Supplier implements Domai
 		}
 	}
 
-	public synchronized static Supplier find(Integer productID) throws SQLException
+	public synchronized static Supplier find(Integer supplierID) throws SQLException
 	{
 		Supplier supplier = null;
 		Connection connection = null;
@@ -110,7 +110,7 @@ public class Supplier extends org.eap.dao.domainobject.Supplier implements Domai
 			connection = DB.getConnection();
 
 			prepStmt = connection.prepareStatement("SELECT * FROM Supplier WHERE SupplierID = ?;");
-			prepStmt.setInt(1, productID);
+			prepStmt.setInt(1, supplierID);
 			prepStmt.setMaxRows(1); 
 
 			ResultSet rs = prepStmt.executeQuery();

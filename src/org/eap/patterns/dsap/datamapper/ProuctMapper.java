@@ -48,9 +48,7 @@ public class ProuctMapper extends AbstractMapper
 	    	throw e;
 		}
 	}
-	
-	
-	
+
 	@SuppressWarnings("unchecked")
 	public synchronized int insert(Product product) throws SQLException
 	{
@@ -94,10 +92,6 @@ public class ProuctMapper extends AbstractMapper
 
 	public Product findProuct(int id) throws Exception
 	{
-		Product product = (Product)get(id);
-
-		if(product == null)
-			product = find(id);
-		return product;
+		return (Product)get(id);
 	}
 }
