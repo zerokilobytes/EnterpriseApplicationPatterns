@@ -86,12 +86,20 @@ public class UnitOfWorkScope
 
 	private void deleteRemoved()  throws SQLException
 	{
-		// TODO Auto-generated method stub
+		for (Iterator objects = (Iterator) removedObjects.iterator(); objects.hasNext();)
+		{
+			DomainObject obj = (DomainObject) objects.next();
+			obj.delete();
+		}
 	}
 
 	private void updateDirty()  throws SQLException
 	{
-		// TODO Auto-generated method stub
+		for (Iterator objects = (Iterator) dirtyObjects.iterator(); objects.hasNext();)
+		{
+			DomainObject obj = (DomainObject) objects.next();
+			obj.update();
+		}
 	}
 
 	private void insertNew() throws SQLException

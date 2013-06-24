@@ -38,6 +38,7 @@ public class SQLite implements DataSource
 	public boolean closeConnection()
 	{
 		try {
+			if(!connection.isClosed())
 			connection.close();
 			return true;
 		} catch (SQLException e) {

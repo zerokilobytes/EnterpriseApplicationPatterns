@@ -10,6 +10,6 @@ interface DomainObject
 	void markRemoved();
 
 	boolean insert() throws SQLException;
-	boolean update();
-	boolean delete();
+	boolean update() throws SQLException;
+	boolean delete() throws SQLException;
 }

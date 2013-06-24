@@ -37,7 +37,6 @@ public class ProuctMapperTest {
 		int productID = mapper.insert(product);
 		
 		Product productFound = mapper.findProuct(productID);
-
 		assertTrue("Prroduct found must not be the producted that was inserted", productFound.ProductID == productID);
 	}
 

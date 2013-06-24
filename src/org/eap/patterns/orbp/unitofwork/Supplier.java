@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.eap.dao.datasource.DB;
-import org.eap.patterns.dsap.rowdatagateway.ProductGateway;
 
 public class Supplier extends org.eap.dao.domainobject.Supplier implements DomainObject
 {
@@ -16,7 +15,7 @@ public class Supplier extends org.eap.dao.domainobject.Supplier implements Domai
 	public int getSupplierID() {
 		return SupplierID;
 	}
-	
+
 	private Supplier()
 	{
 		
@@ -40,7 +39,7 @@ public class Supplier extends org.eap.dao.domainobject.Supplier implements Domai
 	{
 		this.SupplierID = insertedID;
 	}
-	
+
 	public Connection getConnection()
 	{
 		return UnitOfWorkScope.getCurrent().getConnection();
@@ -66,7 +65,7 @@ public class Supplier extends org.eap.dao.domainobject.Supplier implements Domai
 		UnitOfWorkScope.getCurrent().registerRemoved(this);
 		
 	}
-	
+
 	@Override
 	public synchronized boolean insert() throws SQLException
 	{
@@ -100,7 +99,7 @@ public class Supplier extends org.eap.dao.domainobject.Supplier implements Domai
 			throw e;
 		}
 	}
-	
+
 	public synchronized static Supplier find(Integer productID) throws SQLException
 	{
 		Supplier supplier = null;
@@ -143,14 +142,59 @@ public class Supplier extends org.eap.dao.domainobject.Supplier implements Domai
 	}
 
 	@Override
-	public boolean update() {
-		// TODO Auto-generated method stub
-		return false;
+	public synchronized boolean update() throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement  prepStmt = null;
+		int affectedRows = 0;
+
+		try 
+		{
+			connection = getConnection();
+
+	    	String sql = "UPDATE Supplier SET SupplierName = ? WHERE SupplierID = ?";
+	    	prepStmt = connection.prepareStatement(sql);
+
+	    	prepStmt.setString(1, this.SupplierName);
+	    	prepStmt.setInt(2, this.SupplierID);
+
+	    	affectedRows = prepStmt.executeUpdate();
+
+			prepStmt.close();
+			DB.closeConnection();
+			return affectedRows > 0;
+		}
+		catch(Exception e)
+		{
+		    throw e;
+		}
 	}
 
 	@Override
-	public boolean delete() {
-		// TODO Auto-generated method stub
-		return false;
+	public synchronized boolean delete() throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement  prepStmt = null;
+
+		try 
+		{
+			connection = getConnection();
+
+	    	int affectedRows = 0;
+
+	    	String sql = "DELETE FROM Supplier WHERE SupplierID = ?;";
+	    	prepStmt = connection.prepareStatement(sql);
+
+	    	prepStmt.setInt(1, this.SupplierID);
+	    	affectedRows = prepStmt.executeUpdate();
+
+			prepStmt.close();
+			DB.closeConnection();
+			return affectedRows > 0;
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 	}
 }
