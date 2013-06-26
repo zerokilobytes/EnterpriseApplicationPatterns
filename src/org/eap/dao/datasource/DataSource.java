@@ -6,4 +6,5 @@ interface DataSource
 {
 	public Connection getConnection();
 	public boolean closeConnection();
+	boolean executeQuery(String statement);
 }

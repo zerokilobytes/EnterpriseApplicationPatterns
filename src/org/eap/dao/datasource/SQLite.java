@@ -91,4 +91,26 @@ public class SQLite implements DataSource
 		java.util.Scanner s = new Scanner(is).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
 	}
+	
+	public boolean executeQuery(String statement)
+	{
+		Statement stmt = null;
+		boolean result = false;
+		try
+		{
+			openConnection();
+			stmt = connection.createStatement();
+			statement = statement.trim();
+			result = stmt.execute(statement);
+			stmt.close();
+
+			connection.close();
+			return result;
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    }
+		return result;
+	}
 }

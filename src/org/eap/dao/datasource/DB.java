@@ -18,4 +18,9 @@ public class DB
 	{
 		return dataSource.closeConnection();
 	}
+	
+	public static boolean executeQuery(String statement)
+	{
+		return dataSource.executeQuery(statement);
+	}
 }

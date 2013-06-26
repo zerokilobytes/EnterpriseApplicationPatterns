@@ -129,27 +129,27 @@ public class ProductGateway extends Product implements Gateway
 	{
 		Connection connection = null;
 		PreparedStatement  prepStmt = null;
-			try 
-			{
-		    	connection = DB.getConnection();
-		    	connection.setAutoCommit(true);
-		    	int affectedRows = 0;
+		try 
+		{
+	    	connection = DB.getConnection();
+	    	connection.setAutoCommit(true);
+	    	int affectedRows = 0;
 
-		    	String sql = "UPDATE Product SET SupplierID = ?, Price = ?, ProductName = ?, ProductDescription = ?, InStock = ? WHERE ProductID = ?";
-		    	prepStmt = connection.prepareStatement(sql);
+	    	String sql = "UPDATE Product SET SupplierID = ?, Price = ?, ProductName = ?, ProductDescription = ?, InStock = ? WHERE ProductID = ?";
+	    	prepStmt = connection.prepareStatement(sql);
 
-		    	prepStmt.setInt(1, this.SupplierID);
-		    	prepStmt.setDouble(2, this.Price);
-		    	prepStmt.setString(3, this.ProductName);
-		    	prepStmt.setString(4, this.ProductDescription);
-		    	prepStmt.setBoolean(5, this.InStock);
-		    	prepStmt.setInt(6, this.ProductID);
+	    	prepStmt.setInt(1, this.SupplierID);
+	    	prepStmt.setDouble(2, this.Price);
+	    	prepStmt.setString(3, this.ProductName);
+	    	prepStmt.setString(4, this.ProductDescription);
+	    	prepStmt.setBoolean(5, this.InStock);
+	    	prepStmt.setInt(6, this.ProductID);
 
-		    	affectedRows = prepStmt.executeUpdate();
+	    	affectedRows = prepStmt.executeUpdate();
 
-				prepStmt.close();
-				DB.closeConnection();
-				return affectedRows > 0;
+			prepStmt.close();
+			DB.closeConnection();
+			return affectedRows > 0;
 		}
 		catch(Exception e)
 		{

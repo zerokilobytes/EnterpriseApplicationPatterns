@@ -19,4 +19,12 @@ public class DataTable<T>
 	{
 		Rows.add(row);
 	}
+
+	public int size() {
+		return Rows.size();
+	}
+
+	public boolean isEmpty() {
+		return Rows.isEmpty();
+	}
 }

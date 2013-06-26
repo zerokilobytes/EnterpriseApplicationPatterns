@@ -12,23 +12,19 @@ import org.eap.dao.datasource.DB;
 
 public class Product extends org.eap.dao.domainobject.Product
 {
-	private static final Map<Integer, DataTable<Product>> products = new HashMap<Integer, DataTable<Product>>();
-
-    private Product()
-    {
-    }
+	private final Map<Integer, DataTable<Product>> products = new HashMap<Integer, DataTable<Product>>();
 
 	public DataTable<Product> getProductsBySupplier(Integer supplierID) throws SQLException
 	{
 		if(!products.containsKey(supplierID))
 		{
-			products.put(supplierID, getProductsBySupplier(supplierID)); // Lazy initialization
+			products.put(supplierID, findProductsBySupplier(supplierID)); // Lazy initialization
         }
 
         return products.get(supplierID);
 	}
 
-	public synchronized static DataTable<Product> getProductsBySupplier(int supplierID) throws SQLException
+	private synchronized static DataTable<Product> findProductsBySupplier(int supplierID) throws SQLException
 	{
 		DataTable<Product> result = new DataTable<Product>();
 		Connection connection = null;
