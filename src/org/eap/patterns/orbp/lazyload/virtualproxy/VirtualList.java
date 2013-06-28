@@ -41,7 +41,6 @@ public class VirtualList<T>
 		try {
 			loader.load();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return loader;
