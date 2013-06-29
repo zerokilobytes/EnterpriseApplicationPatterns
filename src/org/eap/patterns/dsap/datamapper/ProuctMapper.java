@@ -9,7 +9,7 @@ import java.sql.Statement;
 import org.eap.dao.datasource.DB;
 import org.eap.dao.domainobject.Product;
 
-public class ProuctMapper extends AbstractMapper
+public class ProuctMapper extends AbstractMapper<Product>
 {
 	protected synchronized Product find(int productID) throws SQLException 
 	{
@@ -49,7 +49,6 @@ public class ProuctMapper extends AbstractMapper
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public synchronized int insert(Product product) throws SQLException
 	{
 		Connection connection = null;
@@ -74,7 +73,9 @@ public class ProuctMapper extends AbstractMapper
 	    	prepStmt.executeUpdate();
 
 	    	ResultSet rs = prepStmt.getGeneratedKeys();
-	    	if (rs.next()){
+
+	    	if (rs.next())
+	    	{
 	    		insertedID = rs.getInt(1);
 	    		product.ProductID = insertedID;
 	    		loadedMap.put(product.ProductID, product);
