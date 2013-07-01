@@ -16,12 +16,15 @@ public class SQLite implements DataSource
 	}
 	protected boolean openConnection() 
 	{
-		try 
+		try
 		{
-			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:test.db");
-			return true;
-		} 
+			if(connection == null || connection.isClosed())
+			{
+				Class.forName("org.sqlite.JDBC");
+				connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+				return true;
+			}
+		}
 		catch ( Exception e ) 
 		{
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );

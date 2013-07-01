@@ -3,23 +3,22 @@ package org.eap.patterns.orbp.lazyload.ghost;
 
 public class Supplier extends DomainObject
 {
-	String name;
+	String SupplierName;
 
-	public Supplier(Integer key)
+	public Supplier(Integer supplierID)
 	{
-		super(key);
+		super(supplierID);
 	}
 	public String getName() throws Exception
 	{
 		load();
-		return name;
+		return SupplierName;
 	}
-	
-	
-	public void setName(String name) throws Exception
+
+	public void setName(String supplierName) throws Exception
 	{
 		load();
-		this.name = name;
+		this.SupplierName = supplierName;
 	}
 
 	@Override
@@ -27,8 +26,7 @@ public class Supplier extends DomainObject
 	{
 		if (isGhost())
 		{
-			//SupplierMapper mapper = new SupplierMapper();
-			//mapper.findSupplier(key);
+			(new DefaultDataSource()).load(this);
 		}
 	}
 }

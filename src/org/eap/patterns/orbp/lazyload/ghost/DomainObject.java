@@ -2,13 +2,12 @@ package org.eap.patterns.orbp.lazyload.ghost;
 
 public abstract class DomainObject
 {
-	protected Integer key;
+	protected Integer Key;
 	LoadStatus Status;
-	enum LoadStatus {GHOST, LOADING, LOADED};
-	
+
 	public DomainObject (Integer key)
 	{
-	   this.key = key;
+	   this.Key = key;
 	}
 
 	public Boolean isGhost()

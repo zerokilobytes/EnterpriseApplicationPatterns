@@ -1,4 +1,4 @@
-package org.eap.patterns.dsap.datamapper;
+package org.eap.patterns.orbp.lazyload.ghost;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.eap.dao.datasource.DB;
-import org.eap.dao.domainobject.Supplier;
 
-public class SupplierMapper extends AbstractMapper<Supplier>
+public class SupplierMapper extends Mapper<Supplier>
 {
 	protected synchronized Supplier find(int productID) throws SQLException 
 	{
@@ -17,7 +16,7 @@ public class SupplierMapper extends AbstractMapper<Supplier>
 		Connection connection = null;
 		PreparedStatement  prepStmt = null;
 
-		try 
+		try
 		{
 			connection = DB.getConnection();
 			connection.setAutoCommit(true);
@@ -30,8 +29,7 @@ public class SupplierMapper extends AbstractMapper<Supplier>
 
 			while (rs.next())
 			{
-				supplier = new Supplier();
-				supplier.SupplierID 		= rs.getInt("SupplierID");
+				supplier = new Supplier(rs.getInt("SupplierID"));
 				supplier.SupplierName 		= rs.getString("SupplierName");
 			}
 			rs.close();
@@ -67,8 +65,8 @@ public class SupplierMapper extends AbstractMapper<Supplier>
 	    	ResultSet rs = prepStmt.getGeneratedKeys();
 	    	if (rs.next()){
 	    		insertedID = rs.getInt(1);
-	    		supplier.SupplierID = insertedID;
-	    		loadedMap.put(supplier.SupplierID, supplier);
+	    		supplier.Key = insertedID;
+	    		loadedMap.put(supplier.Key, supplier);
 	    	}
 
 			prepStmt.close();
@@ -81,8 +79,27 @@ public class SupplierMapper extends AbstractMapper<Supplier>
 		}
 	}
 
-	public Supplier findSupplier(int id) throws Exception
+	public Supplier Find (Integer key)
 	{
-		return get(id);
+		return (Supplier) abstractFind(key);
+	}
+
+	@Override
+	public Supplier CreateGhost(Integer key)
+	{
+		return new Supplier(key);
+	}
+
+	@Override
+	protected void doLoadLine(ResultSet reader, DomainObject obj) throws Exception
+	{
+		Supplier supplier = (Supplier) obj;
+		supplier.SupplierName = reader.getString("SupplierName");
+	}
+
+	@Override
+	protected PreparedStatement findStatement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
