@@ -21,5 +21,12 @@
 
 	1.3 Lazy Load
 		Load or initialize an object only when needed.
+		of its properties is accessed.
 		• Performance boost for application
 		• Avoids unnecessary reading of objects
+
+		1.3.1 Implementations
+		• Lazy initialization:
+		• Virtual proxy:
+		• Value holder:
+		• Ghost: A ghost object is loaded in a partial state. It loads its own data the first time one
